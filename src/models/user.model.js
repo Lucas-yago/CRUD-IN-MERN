@@ -20,8 +20,9 @@ DataSchema.pre("save",  function(next){
 
 DataSchema.pre("findOneAndUpdate", function(next){
     let password = this.getUpdate().user_password+'';
-    if(password < 55){
-        this.getUpdate.user_password = bcrypt.hashSync(password, 10);
+    if(password.length < 20){
+        this.getUpdate().user_password = bcrypt.hashSync(password, 10);
+        return next();
     }
     next();
 });
