@@ -2,21 +2,32 @@ const express = require("express");
 const routes = express.Router()
 
 const Users = require("./controllers/users.controller")
+const Products = require("./controllers/products.controller");
 
 routes.get("/", (req, res)=>{
-    res.send("Sever On!")
+    res.send("Server On!")
 })
 
-//user routes
-routes.post("/api/users", Users.create);
+//User routes
+routes.post("/api/v1/users", Users.create);
 
-routes.get("/api/users", Users.index);
+routes.get("/api/v1/users", Users.index);
 
-routes.get("/api/users/:id", Users.details);
+routes.get("/api/v1/users/:id", Users.details);
 
-routes.delete("/api/users/:id", Users.delete);
+routes.delete("/api/v1/users/:id", Users.delete);
 
-routes.put("/api/users", Users.update);
+routes.put("/api/v1/users", Users.update);
 
+//Product routes
+routes.post("/api/v1/products", Products.create);
+
+routes.get("/api/v1/products", Products.index);
+
+routes.get("/api/v1/products/:_id", Products.details);
+
+routes.delete("/api/v1/products/:_id", Products.delete);
+
+routes.put("/api/v1/products", Products.update);
 
 module.exports = routes;
