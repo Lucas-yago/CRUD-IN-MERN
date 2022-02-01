@@ -1,8 +1,8 @@
-const User = require("../models/user.model")
+const User = require("../models/user.model");
 
 module.exports = {
     async index(req, res){
-        const users = await User.find();
+        const users = await User.find({},"user_name user_email user_type ");
         res.json(users);
     },
     async create(req, res){
@@ -15,17 +15,16 @@ module.exports = {
             user = await User.create(data);
             return res.status(200).json(user);
         }else{
-            return res.status(500).json(user);
+            return res.status(400).json(user);
         }
     },
     async details(req, res){
-        const _id = req.params.id;
-        console.log(req.params)
+        const {_id} = req.params;
         const user = await User.findOne({_id},"user_name user_email user_type ");
         res.json(user);
     },
     async delete(req, res){
-        const _id = req.params.id;
+        const {_id} = req.params;
         const user = await User.findByIdAndDelete({_id})
         return res.json(user);
     },

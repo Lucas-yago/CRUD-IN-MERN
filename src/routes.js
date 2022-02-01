@@ -13,9 +13,9 @@ routes.post("/api/v1/users", Users.create);
 
 routes.get("/api/v1/users", Users.index);
 
-routes.get("/api/v1/users/:id", Users.details);
+routes.get("/api/v1/users/:_id", Users.details);
 
-routes.delete("/api/v1/users/:id", Users.delete);
+routes.delete("/api/v1/users/:_id", Users.delete);
 
 routes.put("/api/v1/users", Users.update);
 
