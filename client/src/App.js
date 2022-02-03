@@ -1,4 +1,5 @@
-import  Inicio from "./pages/cliente/painel";
+// import  Inicio from "./pages/cliente/painel";
+import { AppRoutes } from './routes';
 
 function App() {
   return (
@@ -7,7 +8,8 @@ function App() {
         <h1>ERRO: 408</h1>
         <h3>Comeu o cu do curioso!</h3>
       </header> */}
-      <Inicio/>
+      {/* <Inicio/> */}
+      <AppRoutes/>
     </div>
   );
 }
