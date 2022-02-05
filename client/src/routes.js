@@ -7,7 +7,7 @@ import {
   } from "react-router-dom";
 
 //iMPORT ADMIN
-import { DashBoard } from './pages/admin/dashboard';
+import { Dashboard } from './pages/admin/dashboard';
 
 import { Products } from './pages/admin/products';
 import { ProductsEdit } from './pages/admin/products/products.edit';
@@ -30,7 +30,7 @@ export const AppRoutes = () => {
                 <Route path="/products/:idProducts" exact element={<ProductsDetails/>} />
                 
                 {/*Rotas Admin*/}
-                <Route path="/admin" exact element={<DashBoard/>}/>
+                <Route path="/admin" exact element={<Dashboard/>}/>
                 <Route path="/admin/products" exact element={<Products/>}/>
                 <Route path="/admin/products/register" exact element={<ProductsRegister/>}/>
                 <Route path="/admin/products/edit/:idProduc" exact element={<ProductsEdit/>}/>
