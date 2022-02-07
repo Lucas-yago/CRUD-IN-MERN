@@ -13,8 +13,8 @@ function DashboardContent() {
   return (
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: 'flex' }}>
-        
-        < MenuAdmin />
+
+        < MenuAdmin title={'DASHBOARD'} />
         <Box
           component="main"
           sx={{
@@ -30,15 +30,14 @@ function DashboardContent() {
           <Toolbar />
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <Grid container spacing={3}>
-              {/* adiciona abas aqui */}
+              
               <h1>Dashboard</h1>
-
             </Grid>
             < Copyright />
           </Container>
         </Box>
-      </Box>
-    </ThemeProvider>
+      </Box >
+    </ThemeProvider >
   );
 }
 

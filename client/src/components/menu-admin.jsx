@@ -59,7 +59,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
-export const MenuAdmin = () => {
+export const MenuAdmin = ({title}) => {
   const [open, setOpen] = useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
@@ -92,7 +92,7 @@ export const MenuAdmin = () => {
             noWrap
             sx={{ flexGrow: 1 }}
           >
-            Dashboard
+            {title}
           </Typography>
           {/* <IconButton color="inherit">
             <Badge badgeContent={4} color="secondary">
