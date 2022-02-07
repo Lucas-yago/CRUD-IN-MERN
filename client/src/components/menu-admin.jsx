@@ -11,6 +11,7 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import { mainListItems, secondaryListItems } from "./list-menu-admin";
+import { CssBaseline } from '@mui/material';
 
 const drawerWidth = 240;
 
@@ -65,6 +66,7 @@ export const MenuAdmin = () => {
   };
   return (
     <>
+    <CssBaseline />
       <AppBar position="absolute" open={open}>
         <Toolbar
           sx={{

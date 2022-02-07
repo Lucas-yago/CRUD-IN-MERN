@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Container from '@mui/material/Container';
@@ -11,11 +10,10 @@ import { Copyright } from '../../../components/footer-admin';
 const mdTheme = createTheme();
 
 function DashboardContent() {
-
   return (
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: 'flex' }}>
-        <CssBaseline />
+        
         < MenuAdmin />
         <Box
           component="main"
@@ -33,6 +31,7 @@ function DashboardContent() {
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <Grid container spacing={3}>
               {/* adiciona abas aqui */}
+              <h1>Dashboard</h1>
 
             </Grid>
             < Copyright />
