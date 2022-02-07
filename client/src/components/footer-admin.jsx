@@ -5,8 +5,7 @@ import Link from '@mui/material/Link';
 
 export const Copyright = () => {
     return (
-        <Typography variant="body2" color="text.secondary" align="center" position="absolute" bottom="0" >
-        {/* position="absolute" bottom="0" left="50%" marginBottom="10px" */}
+        <Typography variant="body2" color="text.secondary" align="center" position="relative" margin="20px 0px" bottom="0" >
             {'Developed by '}
             <Link color="inherit" href="https:/">
                 KAYTO

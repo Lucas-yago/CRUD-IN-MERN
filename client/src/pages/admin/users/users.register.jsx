@@ -6,22 +6,41 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import { MenuAdmin } from '../../../components/menu-admin';
 import { Copyright } from '../../../components/footer-admin';
-import { FormControl, InputLabel, MenuItem, Paper, Select, TextField } from '@mui/material';
+import { Button, FormControl, InputLabel, MenuItem, Paper, Select, TextField } from '@mui/material';
+import api from '../../../services/api';
 
- 
 const mdTheme = createTheme();
 
 export const UsersRegister = () => {
-  const[userType, setUserType] = React.useState('');
+  const [userName, setUserName] = React.useState('');
+  const [userEmail, setUserEmail] = React.useState('');
+  const [userType, setUserType] = React.useState('');
+  const [userPassword, setUserPassword] = React.useState('');
 
-  const handleChange = (event) => {
-    setUserType(event.target.value);
+  const handleSubmit = () => {
+    const data = {
+      user_name: userName,
+      user_email: userEmail,
+      user_type: userType,
+      user_password: userPassword
+    };
+    if (userName !== '' && userEmail !== '' && userType !== '' && userPassword !== '') {
+
+      api.post('/api/v1/users', data)
+        .then((response) => {
+          if (response.status === 200) {
+            window.location.href = '/admin/users';
+          } else {
+            alert('Error registering user');
+          }
+        })
+    } else {
+      alert('Please fill in all form fields');
+    }
   };
-
   return (
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: 'flex' }}>
-
         < MenuAdmin title={'USERS'} />
         <Box
           component="main"
@@ -40,7 +59,7 @@ export const UsersRegister = () => {
             <Grid container spacing={3}>
               <Grid item sm={12}>
                 <Paper sx={{ padding: '20px' }}>
-                  <h2>Register Form</h2>
+                  <h2>Register user</h2>
                   <Grid container spacing={3}>
                     <Grid item xs={12} sm={12}>
                       <TextField
@@ -51,6 +70,8 @@ export const UsersRegister = () => {
                         fullWidth
                         autoComplete="given-name"
                         variant="standard"
+                        value={userName}
+                        onChange={e => setUserName(e.target.value)}
                       />
                     </Grid>
                     <Grid item xs={12} sm={6}>
@@ -62,20 +83,23 @@ export const UsersRegister = () => {
                         fullWidth
                         autoComplete="email"
                         variant="standard"
+                        value={userEmail}
+                        onChange={e => setUserEmail(e.target.value)}
                       />
                     </Grid>
                     <Grid item xs={12} sm={2}>
                       <FormControl fullWidth variant="standard">
-                        <InputLabel id="demo-simple-select-label">Type</InputLabel>
+                        <InputLabel id="type">Type</InputLabel>
                         <Select
                           labelId="type"
                           id="type"
                           value={userType}
                           label="Type"
-                          onChange={handleChange}
+                          onChange={e => setUserType(e.target.value)}
                         >
-                          <MenuItem value={1}>Employee</MenuItem>
-                          <MenuItem value={2}>Admin</MenuItem>
+                          <MenuItem value={1}>Admin</MenuItem>
+                          <MenuItem value={2}>Manager</MenuItem>
+                          <MenuItem value={3}>Employee</MenuItem>
                         </Select>
                       </FormControl>
                     </Grid>
@@ -88,7 +112,18 @@ export const UsersRegister = () => {
                         type="password"
                         fullWidth
                         variant="standard"
+                        value={userPassword}
+                        onChange={e => setUserPassword(e.target.value)}
                       />
+                    </Grid>
+                    <Grid item xs={12} sm={12} sx={{ textAlign: 'center' }}>
+                      <Button
+                        variant="contained"
+                        type='submit'
+                        onClick={handleSubmit}
+                      >
+                        Submit
+                      </Button>
                     </Grid>
                   </Grid>
                 </Paper>
