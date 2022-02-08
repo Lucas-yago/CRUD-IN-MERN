@@ -44,7 +44,7 @@ export const Users = () => {
         <ThemeProvider theme={mdTheme}>
             <Box sx={{ display: 'flex' }}>
 
-                < MenuAdmin title={'DASHBOARD'} />
+                < MenuAdmin title={'USERS'} />
                 <Box
                     component="main"
                     sx={{
@@ -91,7 +91,7 @@ export const Users = () => {
                                                             <TableCell align="center">{new Date(user.createdAt).toLocaleString('pt-br')}</TableCell>
                                                             <TableCell align="right">
                                                                 <ButtonGroup variant="outlined" aria-label="outlined primary button group">
-                                                                    <IconButton aria-label="edit" color="primary">
+                                                                    <IconButton aria-label="edit" color="primary" href={`/admin/users/edit/${user._id}`}>
                                                                         <EditIcon />
                                                                     </IconButton>
                                                                     <IconButton aria-label="delete" color="error" onClick={() => { handleDelete(user._id) }}>

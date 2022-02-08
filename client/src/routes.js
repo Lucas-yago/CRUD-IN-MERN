@@ -33,11 +33,11 @@ export const AppRoutes = () => {
                 <Route path="/admin" exact element={<Dashboard/>}/>
                 <Route path="/admin/products" exact element={<Products/>}/>
                 <Route path="/admin/products/register" exact element={<ProductsRegister/>}/>
-                <Route path="/admin/products/edit/:idProduc" exact element={<ProductsEdit/>}/>
+                <Route path="/admin/products/edit/:id" exact element={<ProductsEdit/>}/>
                 
                 <Route path="/admin/users" exact element={<Users/>}/>
                 <Route path="/admin/users/register" exact element={<UsersRegister/>}/>
-                <Route path="/admin/users/edit/:idProduct" exact element={<UsersEdit/>}/>
+                <Route path="/admin/users/edit/:id" exact element={<UsersEdit/>}/>
             </Routes>
         </BrowserRouter>
     );
