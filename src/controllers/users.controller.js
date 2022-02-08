@@ -2,7 +2,7 @@ const User = require("../models/user.model");
 
 module.exports = {
     async index(req, res){
-        const users = await User.find({},"user_name user_email user_type ");
+        const users = await User.find({},"user_name user_email user_type createdAt updatedAt");
         res.json(users);
     },
     async create(req, res){
@@ -20,7 +20,7 @@ module.exports = {
     },
     async details(req, res){
         const {_id} = req.params;
-        const user = await User.findOne({_id},"user_name user_email user_type ");
+        const user = await User.findOne({_id},"user_name user_email user_type createdAt updatedAt");
         res.json(user);
     },
     async delete(req, res){
