@@ -27,6 +27,19 @@ export const Users = () => {
         loadUsers();
     }, []);
 
+    const handleDelete = async (id) => {
+        if (window.confirm('really want to delete this user?')) {
+            const response = await api.delete(`/api/v1/users/${id}`)
+            if (response.status === 200) {
+                window.location.href = '/admin/users';
+            } else {
+                alert('There was an error deleting the user');
+            }
+        } else {
+            alert('User deletion has been canceled');
+        }
+    };
+
     return (
         <ThemeProvider theme={mdTheme}>
             <Box sx={{ display: 'flex' }}>
@@ -81,7 +94,7 @@ export const Users = () => {
                                                                     <IconButton aria-label="edit" color="primary">
                                                                         <EditIcon />
                                                                     </IconButton>
-                                                                    <IconButton aria-label="delete" color="error">
+                                                                    <IconButton aria-label="delete" color="error" onClick={() => { handleDelete(user._id) }}>
                                                                         <DeleteIcon />
                                                                     </IconButton>
                                                                 </ButtonGroup>
