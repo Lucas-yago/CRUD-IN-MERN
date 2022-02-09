@@ -1,5 +1,4 @@
 import React from 'react';
-// import { BrowserRouter , Switch, Route} from 'react-router-dom';
 import {
     BrowserRouter,
     Routes,
@@ -8,7 +7,7 @@ import {
 
 //iMPORT ADMIN
 import { Dashboard } from './pages/admin/dashboard';
-
+import { Login } from './pages/admin/login'
 import { Products } from './pages/admin/products';
 import { ProductsEdit } from './pages/admin/products/products.edit';
 import { ProductsRegister } from './pages/admin/products/products.register';
@@ -31,6 +30,7 @@ export const AppRoutes = () => {
                 
                 {/*Rotas Admin*/}
                 <Route path="/admin" exact element={<Dashboard/>}/>
+                <Route path="/admin/login" exact element={<Login/>}/>
                 <Route path="/admin/products" exact element={<Products/>}/>
                 <Route path="/admin/products/register" exact element={<ProductsRegister/>}/>
                 <Route path="/admin/products/edit/:id" exact element={<ProductsEdit/>}/>
