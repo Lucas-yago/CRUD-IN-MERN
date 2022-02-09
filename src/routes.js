@@ -19,6 +19,9 @@ routes.delete("/api/v1/users/:_id", Users.delete);
 
 routes.put("/api/v1/users", Users.update);
 
+routes.post("/api/v1/users/login", Users.login);
+
+
 //Product routes
 routes.post("/api/v1/products", Products.create);
 
