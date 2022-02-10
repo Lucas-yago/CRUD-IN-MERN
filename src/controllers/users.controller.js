@@ -1,5 +1,5 @@
 const User = require("../models/user.model");
-var jwt = require('jsonwebtoken');
+var jwt = require("jsonwebtoken");
 
 const secret = "mySecret";
 
@@ -49,24 +49,45 @@ module.exports = {
       if (error) {
         console.log(error);
         res
-          .status(500)
+          .status(200)
           .json({ error: "Internal server error please try again" });
       } else if (!user) {
-        res
-          .status(400)
-          .json({ status: 2, error: "Email or password do not match!" });
+        res.status(200).json({ status: 2, error: "email not registered" });
       } else {
-        const payload = { email };
-        const token = jwt.sign(payload, secret, { expiresIn: "24h" });
-        res.cookie("token", token, { httpOnly: true });
-        res.status(200).json({
-          status: 1,
-          auth: true,
-          token: token,
-          id_client: user._id,
-          user_name: user.user_name,
+        user.isCorrectPassword(password, async function (error, same) {
+          if (error) {
+            res.status(200).json({ error: "Internal sever error" });
+          } else if (!same) {
+            res.status(200).json({ status: 2, error: "Password incorrect" });
+          } else {
+            const payload = { email };
+            const token = jwt.sign(payload, secret, { expiresIn: "24h" });
+            res.cookie("token", token, { httpOnly: true });
+            res.status(200).json({
+              status: 1,
+              auth: true,
+              token: token,
+              id_user: user._id,
+              user_name: user.user_name,
+            });
+          }
         });
       }
     });
   },
+
+  async checkToken(req, res){
+    const token = req.body.token || req.query.token || req.cokies.token || req.headers['x-access-token'];
+    if(!token){
+      res.json({status:401, msg:'Unauthorized: non-existent token!'});
+    }else{
+      jwt.verify(token, secret, function(error, decode){
+        if(error){
+          res.json({status:401, msg:"Unauthorized: Invalid token!"});
+        }else{
+          res.json({status:200});
+        }
+      });
+    }
+  }
 };
