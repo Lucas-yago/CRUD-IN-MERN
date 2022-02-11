@@ -20,24 +20,28 @@ import { UsersRegister } from './pages/admin/users/users.register';
 import { Home } from './pages/cliente/home';
 import { ProductsDetails } from './pages/cliente/products/products.details';
 
+import { PageError } from './pages/page-error';
+import {PrivateRoute} from './services/privateRoute';
+
 export const AppRoutes = () => {
     return(
         <BrowserRouter>
             <Routes>
                 {/*Rotas cliente*/}
-                <Route path="/" exact element={<Home/>} />
-                <Route path="/products/:idProducts" exact element={<ProductsDetails/>} />
+                <Route path="/"  element={<Home/>} />
+                <Route path="/products/:idProducts"  element={ <ProductsDetails/>  } />
                 
                 {/*Rotas Admin*/}
-                <Route path="/admin" exact element={<Dashboard/>}/>
-                <Route path="/admin/login" exact element={<Login/>}/>
-                <Route path="/admin/products" exact element={<Products/>}/>
-                <Route path="/admin/products/register" exact element={<ProductsRegister/>}/>
-                <Route path="/admin/products/edit/:id" exact element={<ProductsEdit/>}/>
+                <Route path="/admin"  element={ <PrivateRoute> <Dashboard/> </PrivateRoute> }/>
+                <Route path="/admin/login"  element={<Login/>}/>
+                <Route path="/admin/products"  element={<Products/>}/>
+                <Route path="/admin/products/register"  element={<ProductsRegister/>}/>
+                <Route path="/admin/products/edit/:id"  element={<ProductsEdit/>}/>
                 
-                <Route path="/admin/users" exact element={<Users/>}/>
-                <Route path="/admin/users/register" exact element={<UsersRegister/>}/>
-                <Route path="/admin/users/edit/:id" exact element={<UsersEdit/>}/>
+                <Route path="/admin/users"  element={ <PrivateRoute> <Users/> </PrivateRoute> }/>
+                <Route path="/admin/users/register"  element={ <PrivateRoute> <UsersRegister/> </PrivateRoute> }/>
+                <Route path="/admin/users/edit/:id"  element={ <PrivateRoute> <UsersEdit/> </PrivateRoute> }/>
+                <Route path='*' element={<PageError/>} />
             </Routes>
         </BrowserRouter>
     );

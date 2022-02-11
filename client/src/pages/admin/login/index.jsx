@@ -55,7 +55,6 @@ export const Login = () => {
                     <Typography component="h1" variant="h5">
                         Sign in
                     </Typography>
-                    {/* <Box sx={{ mt: 1 }}> */}
                     <TextField
                         margin="normal"
                         required
@@ -79,7 +78,6 @@ export const Login = () => {
                         onChange={e => setPassword(e.target.value)}
                     />
                     <Button
-                        // type="submit"
                         fullWidth
                         variant="contained"
                         sx={{ mt: 3, mb: 2 }}
@@ -87,7 +85,6 @@ export const Login = () => {
                     >
                         Sign In
                     </Button>
-                    {/* </Box> */}
                 </Box>
                 <Copyright />
             </Container>

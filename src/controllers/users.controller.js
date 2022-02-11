@@ -76,8 +76,8 @@ module.exports = {
     });
   },
 
-  async checkToken(req, res){
-    const token = req.body.token || req.query.token || req.cokies.token || req.headers['x-access-token'];
+  async checkToken(req, res, next){
+    const token = req.body.token || req.query.token || req.headers.authorization;
     if(!token){
       res.json({status:401, msg:'Unauthorized: non-existent token!'});
     }else{
@@ -85,9 +85,10 @@ module.exports = {
         if(error){
           res.json({status:401, msg:"Unauthorized: Invalid token!"});
         }else{
-          res.json({status:200});
+          next();
         }
       });
     }
+    
   }
 };

@@ -9,17 +9,17 @@ routes.get("/", (req, res)=>{
 })
 
 //User routes
-routes.post("/api/v1/users", Users.create);
+routes.post("/api/v1/users",Users.checkToken, Users.create);
 
-routes.get("/api/v1/users", Users.index);
+routes.get("/api/v1/users",Users.checkToken, Users.index);
 
-routes.get("/api/v1/users/:_id", Users.details);
+routes.get("/api/v1/users/:_id",Users.checkToken, Users.details);
 
-routes.delete("/api/v1/users/:_id", Users.delete);
+routes.delete("/api/v1/users/:_id",Users.checkToken, Users.delete);
 
-routes.put("/api/v1/users", Users.update);
+routes.put("/api/v1/users",Users.checkToken, Users.update);
 
-routes.post("/api/v1/users/login", Users.login);
+routes.post("/api/v1/users/login/", Users.login);
 
 
 //Product routes
