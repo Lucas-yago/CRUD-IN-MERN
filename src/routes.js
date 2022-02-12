@@ -9,6 +9,10 @@ routes.get("/", (req, res)=>{
 })
 
 //User routes
+routes.get("/api/v1/users/destroyerToken",Users.checkToken ,Users.destroyerToken);
+
+routes.post("/api/v1/users/login", Users.login);
+
 routes.post("/api/v1/users",Users.checkToken, Users.create);
 
 routes.get("/api/v1/users",Users.checkToken, Users.index);
@@ -19,7 +23,6 @@ routes.delete("/api/v1/users/:_id",Users.checkToken, Users.delete);
 
 routes.put("/api/v1/users",Users.checkToken, Users.update);
 
-routes.post("/api/v1/users/login/", Users.login);
 
 
 //Product routes

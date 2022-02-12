@@ -76,19 +76,29 @@ module.exports = {
     });
   },
 
-  async checkToken(req, res, next){
-    const token = req.body.token || req.query.token || req.headers.authorization;
-    if(!token){
-      res.json({status:401, msg:'Unauthorized: non-existent token!'});
-    }else{
-      jwt.verify(token, secret, function(error, decode){
-        if(error){
-          res.json({status:401, msg:"Unauthorized: Invalid token!"});
-        }else{
+  async checkToken(req, res, next) {
+    const token =
+      req.body.token || req.query.token || req.headers.authorization;
+    if (!token) {
+      res.json({ status: 401, msg: "Unauthorized: non-existent token!" });
+    } else {
+      jwt.verify(token, secret, function (error, decode) {
+        if (error) {
+          res.json({ status: 401, msg: "Unauthorized: Invalid token!" });
+        } else {
           next();
         }
       });
     }
-    
-  }
+  },
+
+  async destroyerToken(req, res) {
+    const token = req.headers.token || req.headers.authorization;
+    if (token) {
+      res.cookie("token", null, { httpOnly: true });
+    } else {
+      res.status(401).send("unauthorized logout");
+    }
+    res.send("Session ended successfully");
+  },
 };

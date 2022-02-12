@@ -7,7 +7,22 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import PeopleIcon from '@mui/icons-material/People';
 import LogoutIcon from '@mui/icons-material/Logout';
+import api from '../services/api'
+import { logout, getToken } from '../services/auth'
 
+
+async function handleLogout() {
+  if (window.confirm("Do you really want to logout?")) {
+    await api.get("/api/v1/users/destroyerToken", { Authorization: getToken() }).then((response) => {
+      if (response.status === 200) {
+        logout();
+        window.location.href = '/admin/login'
+      } else {
+        alert("It was not possible to logout")
+      }
+    });
+  }
+}  
 
 export const mainListItems = (
   <div>
@@ -36,7 +51,7 @@ export const mainListItems = (
 export const secondaryListItems = (
   <div>
     <ListSubheader inset>Options</ListSubheader>
-    <ListItem button>
+    <ListItem button onClick={handleLogout}>
       <ListItemIcon>
         <LogoutIcon />
       </ListItemIcon>
